@@ -1,9 +1,16 @@
 import product from "../models/productModal.js";
-
+import {cloudinary }from "../utils/cloudinaryconfig.js"
 
 export const createProduct=async(req,res)=>{
     try{
-const{productName,productPrice,productDiscount,productCategory,images}=req.body;
+        if(!req.files|| !req.files.images || req.files.images.length ===0){
+            return res.status(400).json({success:false,message:"No image uploaded"});
+        }
+            const result = await cloudinary.uploader.upload(req.files.images[0].path);
+        
+const{productName,productPrice,productDiscount,productCategory}=req.body;
+
+const images = result.secure_url;
 const newProduct=new product({productName,productPrice,productDiscount,productCategory,images});
 
 await newProduct.save();

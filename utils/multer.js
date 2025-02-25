@@ -63,7 +63,7 @@ const configureMulter = () => {
   }).fields([
     { name: "videos", maxCount: 5 },
     { name: "documents", maxCount: 5 },
-    { name: "images", maxCount: 5 },
+    { name: "images", maxCount: 8 },
     { name: "imagePreview", maxCount: 5 }, // Ensure this matches your frontend
   ]);
 

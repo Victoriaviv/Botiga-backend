@@ -6,14 +6,19 @@ import bodyParser from 'body-parser';
 import Contact from './models/contactModal.js';
 // import {User} from './User.modal.js'
 dotenv.config();
+
+// const uploadRoute = require("./controllers/routeUpload.js");  
 const port=process.env.PORT||3000
 const db_user=process.env.DB_USER;
 const db_name=process.env.DB_NAME;
 const db_pass=process.env.DB_PASS
 const app = express();
-app.use("/", mainRouter)
-// app.use(bodyParser.json());
+// app.use("/api/users",uploadRoute);
+
 app.use(express.json())
+app.use("/", mainRouter)
+app.use(bodyParser.json());
+
 
 
 const dbUri =process.env.DB_URL;
@@ -31,7 +36,12 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-  app.post("/create",(req,res)=>{
+  // app.get("/", (req, res) => {
+  //   res.send("Welcome to Nodejs Authentication Tutorial");
+    
+  // });
+  
+  app.post("/contact",(req,res)=>{
    const names=req.body.names
    const email=req.body.email
    const phone=req.body.phone

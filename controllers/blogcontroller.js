@@ -50,3 +50,17 @@ catch(error){
 }
 
 }
+export const deleteBlogById=async(req,res)=>{
+    try{
+        const{id}=req.params;
+        const blog=blog.findByIdAndDelete(id);
+        if(!blog)
+            {return res.status(404).json({success:false,message:"blog not found"});
+    }
+        res.status(200).json({success:true,message:"blog deleted successfuly"});
+    }
+    catch(error){
+        res.status(500).json({success:false,message:"server Error",error:error.message})
+    }
+        
+    }

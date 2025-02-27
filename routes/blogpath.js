@@ -1,4 +1,4 @@
-import { createBlog,getAllblog,getBlogById} from "../controllers/blogcontroller.js";
+import { createBlog,getAllblog,getBlogById,deleteBlogById} from "../controllers/blogcontroller.js";
 import configureMulter from "../utils/multer.js";
 import express from 'express';
 
@@ -8,5 +8,6 @@ const upload = configureMulter();
 
 blogRouter.post("/createBlog",upload,createBlog);
 blogRouter.get("/getAllblog",getAllblog);
-blogRouter.get("/getBlogById/:id",getBlogById)
+blogRouter.get("/getBlogById/:id",getBlogById);
+blogRouter.delete("/deleteBlogById/:id",deleteBlogById)
 export default blogRouter;
